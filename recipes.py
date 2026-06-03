@@ -101,3 +101,23 @@ class ShoppingList:
         new_lst = ShoppingList()
         new_lst._items = self._items + other._items
         return new_lst
+
+
+
+
+class DietaryRecipe(Recipe):
+    def __init__(self, title: str, diet_type: str,  ingredients: list):
+        super().__init__(title, ingredients)
+        self.diet_type = diet_type
+
+    def scale(self, ratio: float):
+        if self.is_valid_ratio(ratio):
+            new = super().scale(ratio)
+            return DietaryRecipe(self.title, self.diet_type, new.ingredients)
+        return DietaryRecipe(self.title, self.diet_type, [])
+
+    def __str__(self) -> str:
+        result = f"Рецепт: [{self.diet_type}] {self.title}\nИнгредиенты:\n"
+        for i in self.ingredients:
+            result += f" - {i}\n"
+        return result

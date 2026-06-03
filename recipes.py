@@ -97,7 +97,7 @@ class ShoppingList:
         lst.sort(key=lambda x: x.name)
         return lst
 
-    def __add__(self, other: ShoppingList):
+    def __add__(self, other: 'ShoppingList'):
         new_lst = ShoppingList()
         new_lst._items = self._items + other._items
         return new_lst
